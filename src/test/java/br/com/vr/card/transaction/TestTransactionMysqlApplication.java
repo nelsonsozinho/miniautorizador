@@ -1,5 +1,6 @@
 package br.com.vr.card.transaction;
 
+import br.com.vr.card.transaction.container.TestcontainersConfiguration;
 import org.springframework.boot.SpringApplication;
 
 public class TestTransactionMysqlApplication {
