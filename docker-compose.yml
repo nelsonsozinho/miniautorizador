@@ -1,0 +1,38 @@
+services:
+  store-api:
+    image: 'openjdk:21'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: transaction-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysqldb
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/miniautorizador
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
+      - PROFILE=dev
+    entrypoint: /wait-for-it.sh db:3306 -- java -jar /opt/app.jar
+    networks:
+      - spring
+
+  mysqldb:
+    image: mysql:8.1
+    hostname: mysql
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: miniautorizador
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    networks:
+      - spring
+
+networks:
+  spring:
+    driver: bridge
