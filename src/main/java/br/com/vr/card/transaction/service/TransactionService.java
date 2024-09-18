@@ -30,7 +30,8 @@ public class TransactionService {
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public Transaction newTransaction(final String cardNumber, final BigDecimal transactionAmount, final String password) {
-        final Card card = cardRepository.findByNumber(cardNumber).orElseThrow(() -> new CardNotFoundException(TransactionErrorsEnum.CARD_NOT_FOUND.getKey()));
+        final Card card = cardRepository.findByNumber(cardNumber)
+                .orElseThrow(() -> new CardNotFoundException(TransactionErrorsEnum.CARD_NOT_FOUND.getKey()));
         final BigDecimal newBalance = subtractBalance(card.getBalance(), transactionAmount);
 
         validateCardPassword(password, card);
