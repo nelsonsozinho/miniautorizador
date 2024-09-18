@@ -41,10 +41,7 @@ public class TransactionService {
         cardRepository.save(card);
 
         //create a new transaction
-        Transaction newTransaction = new Transaction();
-        newTransaction.setCard(card);
-        newTransaction.setValue(transactionAmount);
-        newTransaction.setLastModifiedAt(LocalDateTime.now());
+        final Transaction newTransaction = new Transaction(card, transactionAmount, LocalDateTime.now());
 
         return transactionRepository.save(newTransaction);
     }

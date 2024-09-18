@@ -4,6 +4,7 @@ import br.com.vr.card.transaction.controller.mapper.CardMapper;
 import br.com.vr.card.transaction.controller.rest.CardRest;
 import br.com.vr.card.transaction.service.CardService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,17 +12,13 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/cartoes")
+@RequiredArgsConstructor
 public class CardController {
-
 
     private final CardService service;
 
     private final CardMapper mapper;
 
-    public CardController(final CardService service, final CardMapper mapper) {
-        this.service = service;
-        this.mapper = mapper;
-    }
 
     @PostMapping()
     public ResponseEntity<CardRest> createNewCard(@Valid @RequestBody final CardRest cardRest) {

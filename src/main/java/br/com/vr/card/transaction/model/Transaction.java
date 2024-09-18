@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transaction")
@@ -15,6 +16,12 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Transaction extends AbstractEntity {
+
+    public Transaction(final Card card, final BigDecimal value, final LocalDateTime time) {
+        this.card = card;
+        this.value = value;
+        this.setLastModifiedAt(time);
+    }
 
     @Column(name="value",
             columnDefinition="decimal",

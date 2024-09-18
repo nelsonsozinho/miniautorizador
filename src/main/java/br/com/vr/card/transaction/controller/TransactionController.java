@@ -3,6 +3,7 @@ package br.com.vr.card.transaction.controller;
 import br.com.vr.card.transaction.controller.rest.TransactionRest;
 import br.com.vr.card.transaction.service.TransactionService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,13 +14,11 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/transacoes")
+@RequiredArgsConstructor
 public class TransactionController {
 
     private final TransactionService transactionService;
 
-    public TransactionController(final TransactionService transactionService) {
-        this.transactionService = transactionService;
-    }
 
     @PostMapping
     public ResponseEntity<?> newTransaction(@Valid @RequestBody final TransactionRest transaction) {
