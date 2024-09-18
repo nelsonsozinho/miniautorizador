@@ -3,9 +3,13 @@ package br.com.vr.card.transaction.controller.rest;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
+import lombok.Data;
 
 import java.math.BigDecimal;
 
+@Data
+@Builder
 public class TransactionRest {
 
     @NotBlank
@@ -20,28 +24,4 @@ public class TransactionRest {
     @JsonProperty("valor")
     private BigDecimal amount;
 
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
 }

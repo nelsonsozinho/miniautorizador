@@ -25,9 +25,10 @@ public class TestCardController extends TestcontainersConfiguration {
 
     @Test
     public void testGetCard() throws Exception {
-        CardRest cardRest = new CardRest();
-        cardRest.setNumber("432156789012345");
-        cardRest.setPassword("12345");
+        CardRest cardRest = CardRest.builder()
+                .number("432156789012345")
+                .password("12345")
+                .build();
 
         this.mockMvc.perform(
                         get("/cartoes/{number}", cardRest.getNumber())
@@ -38,9 +39,10 @@ public class TestCardController extends TestcontainersConfiguration {
 
     @Test
     public void testGetCardIsTheBalanceIsTheStart() throws Exception {
-        CardRest cardRest = new CardRest();
-        cardRest.setNumber("432156789012345");
-        cardRest.setPassword("12345");
+        CardRest cardRest = CardRest.builder()
+                .number("432156789012345")
+                .password("12345")
+                .build();
 
         this.mockMvc.perform(
                         get("/cartoes/{number}", cardRest.getNumber())
@@ -69,9 +71,10 @@ public class TestCardController extends TestcontainersConfiguration {
 
     @Test
     public void createNewCard() throws Exception {
-        CardRest cardRest = new CardRest();
-        cardRest.setNumber("432143214321432");
-        cardRest.setPassword("12345");
+        CardRest cardRest = CardRest.builder()
+                .number("432143214321432")
+                .password("12345")
+                .build();
 
         this.mockMvc.perform(
                         post("/cartoes")

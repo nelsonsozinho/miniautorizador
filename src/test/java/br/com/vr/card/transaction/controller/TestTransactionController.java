@@ -16,10 +16,11 @@ public class TestTransactionController extends TestcontainersConfiguration {
 
     @Test
     public void testSimpleTransaction() throws Exception {
-        TransactionRest transactionRest = new TransactionRest();
-        transactionRest.setNumber("123456789012345");
-        transactionRest.setPassword("12345");
-        transactionRest.setAmount(BigDecimal.valueOf(100.00));
+        TransactionRest transactionRest = TransactionRest.builder()
+                .number("123456789012345")
+                .password("12345")
+                .amount(BigDecimal.valueOf(100.00))
+                .build();
 
         this.mockMvc.perform(
                         post("/transacoes")
@@ -31,10 +32,11 @@ public class TestTransactionController extends TestcontainersConfiguration {
 
     @Test
     public void testTransactionWithInsufficientFounds() throws Exception {
-        TransactionRest transactionRest = new TransactionRest();
-        transactionRest.setNumber("521352135213521");
-        transactionRest.setPassword("12345");
-        transactionRest.setAmount(BigDecimal.valueOf(600.00));
+        TransactionRest transactionRest = TransactionRest.builder()
+                .number("521352135213521")
+                .password("12345")
+                .amount(BigDecimal.valueOf(600.00))
+                .build();
 
         this.mockMvc.perform(
                         post("/transacoes")
@@ -48,10 +50,11 @@ public class TestTransactionController extends TestcontainersConfiguration {
 
     @Test
     public void testTransactionWithCardNotFound() throws Exception {
-        TransactionRest transactionRest = new TransactionRest();
-        transactionRest.setNumber("000000000000000");
-        transactionRest.setPassword("12345");
-        transactionRest.setAmount(BigDecimal.valueOf(100.00));
+        TransactionRest transactionRest = TransactionRest.builder()
+                .number("000000000000000")
+                .password("12345")
+                .amount(BigDecimal.valueOf(100.00))
+                .build();
 
         this.mockMvc.perform(
                         post("/transacoes")
@@ -60,15 +63,15 @@ public class TestTransactionController extends TestcontainersConfiguration {
                 .andDo(print())
                 .andExpect(status().is4xxClientError())
                 .andExpect(content().string(TransactionErrorsEnum.CARD_NOT_FOUND.getKey()));
-        ;
     }
 
     @Test
     public void testTransactionWithInvalidPassword() throws Exception {
-        TransactionRest transactionRest = new TransactionRest();
-        transactionRest.setNumber("521352135213521");
-        transactionRest.setPassword("00000");
-        transactionRest.setAmount(BigDecimal.valueOf(100.00));
+        TransactionRest transactionRest = TransactionRest.builder()
+                .number("521352135213521")
+                .password("00000")
+                .amount(BigDecimal.valueOf(100.00))
+                .build();
 
         this.mockMvc.perform(
                         post("/transacoes")
@@ -77,7 +80,6 @@ public class TestTransactionController extends TestcontainersConfiguration {
                 .andDo(print())
                 .andExpect(status().is4xxClientError())
                 .andExpect(content().string(TransactionErrorsEnum.INVALID_PASSWORD.getKey()));
-        ;
     }
 
 }
