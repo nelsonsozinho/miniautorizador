@@ -3,7 +3,6 @@ package br.com.vr.card.transaction.controller;
 import br.com.vr.card.transaction.controller.rest.TransactionRest;
 import br.com.vr.card.transaction.service.TransactionService;
 import jakarta.validation.Valid;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.URI;
 
 @RestController
-@RequestMapping(value = "/transacoes", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/transacoes")
 public class TransactionController {
 
     private final TransactionService transactionService;

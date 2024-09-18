@@ -4,14 +4,13 @@ import br.com.vr.card.transaction.controller.mapper.CardMapper;
 import br.com.vr.card.transaction.controller.rest.CardRest;
 import br.com.vr.card.transaction.service.CardService;
 import jakarta.validation.Valid;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
 @RestController
-@RequestMapping(value = "/cartoes", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/cartoes")
 public class CardController {
 
 
