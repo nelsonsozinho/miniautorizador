@@ -1,16 +1,19 @@
 package br.com.vr.card.transaction.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "transaction")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Transaction extends AbstractEntity {
 
     @Column(name="value",
@@ -22,19 +25,4 @@ public class Transaction extends AbstractEntity {
     @JoinColumn(name = "id_card")
     private Card card;
 
-    public BigDecimal getValue() {
-        return value;
-    }
-
-    public void setValue(BigDecimal value) {
-        this.value = value;
-    }
-
-    public Card getCard() {
-        return card;
-    }
-
-    public void setCard(Card card) {
-        this.card = card;
-    }
 }

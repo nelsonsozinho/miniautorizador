@@ -1,11 +1,10 @@
 package br.com.vr.card.transaction.service;
 
 import br.com.vr.card.transaction.exception.CardAlreadyExistsException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import br.com.vr.card.transaction.model.Card;
 import br.com.vr.card.transaction.repository.CardRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
