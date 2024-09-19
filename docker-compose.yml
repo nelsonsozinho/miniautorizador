@@ -1,5 +1,5 @@
 services:
-  store-api:
+  autorizador-api:
     image: 'openjdk:21'
     build:
       context: .
